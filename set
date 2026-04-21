@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+main() {
+	case "$1" in
+	monoline)
+	 set_monoline
+	;;
+	miniline)
+	 set_miniline
+	;;
+	customline)
+	 set_customline
+	;;
+	*)
+	 help
+	;;
+	esac
+}
+
+set_monoline() {
+    mkdir -p ~/.config
+	cp preset/monoline.toml ~/.config/starship.toml
+}
+
+set_miniline() {
+	mkdir -p ~/.config
+	cp preset/miniline.toml ~/.config/starship.toml
+}
+
+set_customline() {
+	mkdir -p ~/.config
+	cp preset/customline.toml ~/.config/starship.toml
+}
+
+help() {
+	echo "Usage: ./set <preset>"
+	echo "Preset:"
+	echo -e " - monoline\n - miniline\n - customline"
+}
+
+main "$@"

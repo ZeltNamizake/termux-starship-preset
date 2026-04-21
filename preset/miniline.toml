@@ -1,0 +1,24 @@
+format = """
+$time\
+$directory\
+$git_branch
+$character"""
+
+[directory]
+home_symbol = ''
+format = "[$path ](bold fg:green)"
+truncation_length = 2
+truncation_symbol = "…/"
+
+[character]
+disabled = false
+success_symbol = '[»](bold fg:green)'
+error_symbol = '[»](bold fg:red)'
+
+[time]
+disabled = false
+time_format = "%R"
+format = '[$time ](dimmed)'
+
+[git_branch]
+format = '[ $branch ](fg:white dimmed)'

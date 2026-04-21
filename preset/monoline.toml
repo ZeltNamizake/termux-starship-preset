@@ -1,0 +1,60 @@
+format = """\
+$os\
+$directory\
+$git_branch\
+$nodejs\
+$golang\
+$python\
+$c\
+$time\
+[](white)
+$character"""
+
+[directory]
+style = "bg:white fg:black"
+format = "[ $path ]($style)"
+truncation_length = 2
+truncation_symbol = "../"
+
+[character]
+success_symbol = "[➤](white bold)"
+error_symbol = "[➤](red bold)"
+
+[os]
+disabled = false
+style = "bg:white fg:black"
+
+[os.symbols]
+Android = "  "
+
+[git_branch]
+style = "bg:white fg:black"
+format = '[ $branch ]($style)'
+
+[nodejs]
+style = "bg:white fg:black"
+format = '[󰎙 ]($style)'
+detect_folders = ['node_modules', "nodejs", "Nodejs"]
+
+[python]
+style = "bg:white fg:black"
+format = "[󰌠 ]($style)"
+detect_extensions = ['py']
+detect_folders = ["python", "Python"]
+
+[c]
+style = "bg:white fg:black"
+format = "[󰙱 ]($style)"
+detect_extensions = ["c"]
+
+[golang]
+style = "bg:white fg:black"
+format = "[󰟓  ]($style)"
+detect_extensions = ["go"]
+detect_folders = ["golang", "Golang"]
+
+[time]
+disabled = false
+time_format = "%R"
+style = "bg:white fg:black"
+format = "[$time ]($style)"
