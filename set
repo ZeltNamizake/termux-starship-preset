@@ -45,7 +45,7 @@ help() {
 	echo " - monoline	[bash]"
 	echo " - miniline	[bash]"
 	echo " - customline	[bash]"
-        echo " - pzhline	[zsh]"
+	echo " - pzhline	[zsh]"
 }
 
 main "$@"
