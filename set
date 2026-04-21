@@ -11,6 +11,9 @@ main() {
 	customline)
 	 set_customline
 	;;
+	pzhline)
+	 set_pzhline
+	;;
 	*)
 	 help
 	;;
@@ -32,10 +35,17 @@ set_customline() {
 	cp preset/customline.toml ~/.config/starship.toml
 }
 
+set_pzhline() {
+	mkdir -p ~/.config && cp preset/pzhline.toml ~/.config/starship.toml
+}
+
 help() {
 	echo "Usage: ./set <preset>"
 	echo "Preset:"
-	echo -e " - monoline\n - miniline\n - customline"
+	echo " - monoline	[bash]"
+	echo " - miniline	[bash]"
+	echo " - customline	[bash]"
+        echo " - pzhline	[zsh]"
 }
 
 main "$@"
