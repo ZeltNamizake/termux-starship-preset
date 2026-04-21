@@ -5,10 +5,6 @@ A minimal prompt preset for Starship in Termux. Focus: simple, fast, and clean.
 
 ![Preview](./view/preview.jpg)
 
-- monoline → one full line, informative
-- miniline → minimal
-- customline → flexible + language symbols
-
 ---
 
 ## ❕️ Prerequisites
