@@ -19,8 +19,11 @@ cd termux-starship-preset && chmod +x set
 ```
 
 ## 🚀 Usage
-```
-./set monoline
-./set miniline
-./set customline
-```
+
+![Usage](./view/usage.jpg)
+
+---
+
+## Notes
+- optimized for right-side layout (best on zsh)
+- bash support: partial display
