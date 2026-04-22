@@ -44,7 +44,8 @@ set_preset() {
 
 set_shell() {
     if [ ! -x "$PREFIX/bin/$1" ]; then
-        echo "$1 not installed"
+        echo "The shell $1 is not installed."
+        echo -e "Install it by executing:$d apt install zsh $r"
         return 1
     fi
 
