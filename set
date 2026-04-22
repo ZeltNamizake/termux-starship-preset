@@ -1,51 +1,84 @@
 #!/usr/bin/env bash
 
+b="\e[1m"
+d="\e[2m"
+r="\e[0m"
+
 main() {
-	case "$1" in
-	monoline)
-	 set_monoline
-	;;
-	miniline)
-	 set_miniline
-	;;
-	customline)
-	 set_customline
-	;;
-	pzhline)
-	 set_pzhline
-	;;
-	*)
-	 help
-	;;
-	esac
+
+    setup_shell() {
+        current_shell=$(basename "$SHELL")
+
+        if [ "$current_shell" = "zsh" ]; then
+            FILE="$HOME/.zshrc"
+            INIT='eval "$(starship init zsh)"'
+        else
+            FILE="$HOME/.bashrc"
+            INIT='eval "$(starship init bash)"'
+        fi
+
+        if ! grep -q "starship init" "$FILE"; then
+            echo "$INIT" >> "$FILE"
+            echo -e "Reload shell to apply changes: $d exec $current_shell -l $r"
+        fi
+    }
+
+    case "$1" in
+        monoline|miniline|customline|pzhline)
+            set_preset "$1"
+            setup_shell
+        ;;
+        zsh|bash)
+            set_shell "$1"
+        ;;
+        *)
+            help
+        ;;
+    esac
 }
 
-set_monoline() {
+set_preset() {
     mkdir -p ~/.config
-	cp preset/monoline.toml ~/.config/starship.toml
+    cp "preset/$1.toml" ~/.config/starship.toml
 }
 
-set_miniline() {
-	mkdir -p ~/.config
-	cp preset/miniline.toml ~/.config/starship.toml
+set_shell() {
+    if [ ! -x "$PREFIX/bin/$1" ]; then
+        echo "$1 not installed"
+        return 1
+    fi
+
+    chsh -s "$1"
+    echo "Start a new session, then exit this session."
 }
 
-set_customline() {
-	mkdir -p ~/.config
-	cp preset/customline.toml ~/.config/starship.toml
-}
+check_shell() {
+    current=$(basename "$SHELL")
 
-set_pzhline() {
-	mkdir -p ~/.config && cp preset/pzhline.toml ~/.config/starship.toml
+    if [ "$current" = "zsh" ]; then
+        echo -e " - zsh $d [active] $r\n - bash"
+    else
+        echo -e " - zsh\n - bash $d [active] $r"
+    fi
 }
 
 help() {
-	echo "Usage: ./set <preset>"
-	echo "Preset:"
-	echo " - monoline	[bash]"
-	echo " - miniline	[bash]"
-	echo " - customline	[bash]"
-	echo " - pzhline	[zsh]"
+    echo "Usage:"
+    echo "  ./set <preset>        # change presets"
+    echo "  ./set <bash|zsh>      # change default shell"
+
+    echo "Preset:"
+    echo " - monoline"
+    echo " - miniline"
+    echo " - customline"
+    echo " - pzhline (zsh)"
+
+    echo "Shell (current):"
+    check_shell
+
+    echo "Example:"
+    echo " - ./set pzhline"
+    echo " - ./set bash"
 }
 
 main "$@"
