@@ -1,0 +1,28 @@
+format = """
+┌──${custom.user}${custom.host}-$directory
+└─$character
+"""
+
+[custom.user]
+when = true
+style = "bg:8 fg:white bold"
+command = "echo termux"
+format = "[ 󰊤 $output ]($style)"
+
+[custom.host]
+when = true
+style = "bg:24 fg:white bold"
+command = "hostname"
+format = "[ $output ]($style)"
+
+[directory]
+style = "fg:white bold"
+home_symbol = "⊠"
+format = "[$path]($style)"
+truncation_length = 1
+truncation_symbol = "⋮/"
+
+[character]
+disabled = false
+success_symbol = '[](fg:white)'
+error_symbol = '[](fg:red)'

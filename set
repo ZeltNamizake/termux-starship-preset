@@ -69,10 +69,10 @@ help() {
     echo "  ./set <bash|zsh>      # change default shell"
 
     echo "Preset:"
-    echo " - monoline"
+    echo " - monoline	- pzhline (zsh)"
     echo " - miniline"
     echo " - customline"
-    echo " - pzhline (zsh)"
+    echo " - ghline"
 
     echo "Shell (current):"
     check_shell
